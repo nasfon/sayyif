@@ -8,8 +8,8 @@ const PIXEL_RATIO = DPI / CSS_DPI
 
 export async function downloadReceiptPdf(sale: SaleDetail): Promise<void> {
   const node =
-    (document.querySelector('.receipt-print-area') as HTMLElement | null) ??
-    (document.getElementById('receipt-view') as HTMLElement | null)
+    (document.getElementById('receipt-view') as HTMLElement | null) ??
+    (document.querySelector('.receipt-print-area') as HTMLElement | null)
 
   if (!node) {
     throw new Error('Receipt not rendered yet.')
@@ -20,13 +20,15 @@ export async function downloadReceiptPdf(sale: SaleDetail): Promise<void> {
   const prevPosition = node.style.position
   const prevLeft = node.style.left
   const prevTop = node.style.top
+  const prevWidth = node.style.width
   const prevVisibility = node.style.visibility
 
   if (wasHidden) {
     node.style.display = 'block'
     node.style.position = 'fixed'
-    node.style.left = '-100000px'
+    node.style.left = '0'
     node.style.top = '0'
+    node.style.width = '210mm'
     node.style.visibility = 'visible'
   }
 
@@ -64,6 +66,7 @@ export async function downloadReceiptPdf(sale: SaleDetail): Promise<void> {
       node.style.position = prevPosition
       node.style.left = prevLeft
       node.style.top = prevTop
+      node.style.width = prevWidth
       node.style.visibility = prevVisibility
     }
   }

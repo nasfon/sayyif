@@ -82,7 +82,7 @@ export default function SaleSuccessDialog({ open, sale, onClose }: SaleSuccessDi
                 borderColor: 'divider',
               }}
             >
-              <ReceiptActions sale={sale} />
+              <ReceiptActions sale={sale} shopName={shop?.name} />
               <Button fullWidth variant="contained" onClick={onClose} sx={{ mt: 1.5 }}>
                 Done
               </Button>
@@ -106,7 +106,7 @@ export default function SaleSuccessDialog({ open, sale, onClose }: SaleSuccessDi
           <ReceiptSheet sale={sale} shop={shop} forPrint />
         </DialogContent>
         <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1, pb: 3 }}>
-          <ReceiptActions sale={sale} />
+          <ReceiptActions sale={sale} shopName={shop?.name} />
           <Button onClick={onClose} variant="contained">
             Done
           </Button>
