@@ -1,6 +1,6 @@
 # Acceptance Criteria & UAT Plan
 
-# Inventory Management System (IMS)
+# SAYYIF PREMIUM FLOUR MASTERS LTD
 
 **Version:** 1.0 (MVP)
 
@@ -10,7 +10,7 @@
 
 # 1. Purpose
 
-This document defines measurable acceptance criteria for each module of the Inventory Management System (IMS) and the User Acceptance Testing (UAT) process used to confirm the system is ready for go-live.
+This document defines measurable acceptance criteria for each module of the SAYYIF PREMIUM FLOUR MASTERS LTD and the User Acceptance Testing (UAT) process used to confirm the system is ready for go-live.
 
 ---
 

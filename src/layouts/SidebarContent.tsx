@@ -60,7 +60,7 @@ export default function SidebarContent({
         <Logo size={32} />
         {!collapsed && (
           <Typography variant="h6" sx={{ fontWeight: 700, color: '#1e293b' }}>
-            IMS
+            SAYYIF PREMIUM FLOUR MASTERS LTD
           </Typography>
         )}
       </Box>

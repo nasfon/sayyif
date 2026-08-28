@@ -1,6 +1,6 @@
 # Risk Management Plan
 
-# Inventory Management System (IMS)
+# SAYYIF PREMIUM FLOUR MASTERS LTD
 
 **Version:** 1.0 (MVP)
 
@@ -16,7 +16,7 @@
 
 # 1. Purpose
 
-This document identifies the key risks for the Inventory Management System (IMS) project, assesses their likelihood and impact, and defines mitigation and contingency strategies.
+This document identifies the key risks for the SAYYIF PREMIUM FLOUR MASTERS LTD project, assesses their likelihood and impact, and defines mitigation and contingency strategies.
 
 Risks are reviewed at the end of each phase (see Project Roadmap & Timeline).
 

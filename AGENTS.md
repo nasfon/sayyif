@@ -6,7 +6,7 @@ Read this file before doing any work in this repository.
 
 ## 1. Project Overview
 
-**Inventory Management System (IMS)** — a multi-shop inventory, sales, customer-credit, and expense web app.
+**SAYYIF PREMIUM FLOUR MASTERS LTD** — a multi-shop inventory, sales, customer-credit, and expense web app.
 
 * Frontend: React SPA (Vite 8 + React 19 + TypeScript)
 * Backend: Supabase (PostgreSQL, Auth, Data API/PostgREST, RLS, Storage)

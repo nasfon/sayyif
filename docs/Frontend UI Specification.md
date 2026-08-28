@@ -1,6 +1,6 @@
 # Frontend/UI Specification
 
-# Inventory Management System (IMS)
+# SAYYIF PREMIUM FLOUR MASTERS LTD
 
 **Version:** 1.0 (MVP)
 
@@ -16,7 +16,7 @@
 
 # 1. Purpose
 
-This document defines the user interface structure, navigation, layouts, pages, components, and user interactions for the Inventory Management System (IMS).
+This document defines the user interface structure, navigation, layouts, pages, components, and user interactions for the SAYYIF PREMIUM FLOUR MASTERS LTD.
 
 The goal is to provide a clean, responsive, modern, and easy-to-use experience across desktop, tablet, and mobile devices.
 

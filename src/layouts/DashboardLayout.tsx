@@ -164,7 +164,7 @@ export default function DashboardLayout() {
           </IconButton>
           <Logo size={32} />
           <Typography variant="h6" sx={{ fontWeight: 700, color: '#1e293b' }}>
-            IMS
+            SAYYIF PREMIUM FLOUR MASTERS LTD
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Tooltip title="Notifications">
@@ -230,7 +230,7 @@ export default function DashboardLayout() {
           <OfflineBanner />
         </Box>
         <Breadcrumbs aria-label="breadcrumb" sx={{ mb: 2 }}>
-          <Typography color="text.secondary">IMS</Typography>
+          <Typography color="text.secondary">SAYYIF PREMIUM FLOUR MASTERS LTD</Typography>
           <Typography color="text.primary" sx={{ fontWeight: 600 }}>
             {activeItem.label}
           </Typography>

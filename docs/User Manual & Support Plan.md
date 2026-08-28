@@ -1,6 +1,6 @@
 # User Manual & Support Plan
 
-# Inventory Management System (IMS)
+# SAYYIF PREMIUM FLOUR MASTERS LTD
 
 **Version:** 1.0 (MVP)
 
@@ -10,7 +10,7 @@
 
 # 1. Purpose
 
-This document outlines the user-facing documentation, training approach, and post-launch support plan for the Inventory Management System (IMS).
+This document outlines the user-facing documentation, training approach, and post-launch support plan for the SAYYIF PREMIUM FLOUR MASTERS LTD.
 
 It is the final document of the planning package and prepares the business for daily operation of the system.
 

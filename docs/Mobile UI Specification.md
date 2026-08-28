@@ -1,6 +1,6 @@
 # Mobile UI Specification
 
-# Inventory Management System (IMS) — Mobile App Experience
+# SAYYIF PREMIUM FLOUR MASTERS LTD — Mobile App Experience
 
 **Version:** 1.0 (MVP Mobile)
 **Prepared By:** NasFon
@@ -15,7 +15,7 @@
 
 # 0. Scope & Ground Rules
 
-This document is **UI-only**. It defines layout, navigation, components, interaction, and visual behaviour for the IMS mobile experience. It does **not** change schemas, APIs, RPCs, or business logic. It extends (never contradicts) the existing desktop/tablet `Frontend UI Specification.md`.
+This document is **UI-only**. It defines layout, navigation, components, interaction, and visual behaviour for the SAYYIF PREMIUM FLOUR MASTERS LTD mobile experience. It does **not** change schemas, APIs, RPCs, or business logic. It extends (never contradicts) the existing desktop/tablet `Frontend UI Specification.md`.
 
 The mobile experience must feel like a **native app** on both Android and iOS:
 

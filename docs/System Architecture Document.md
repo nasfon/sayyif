@@ -1,6 +1,6 @@
 # System Architecture Document (SAD)
 
-# Inventory Management System (IMS)
+# SAYYIF PREMIUM FLOUR MASTERS LTD
 
 **Version:** 1.0 (MVP)
 
@@ -16,7 +16,7 @@
 
 # 1. Purpose
 
-This document defines the overall system architecture for the Inventory Management System (IMS). It describes the application's architecture, technology stack, modules, data flow, security model, and deployment approach.
+This document defines the overall system architecture for the SAYYIF PREMIUM FLOUR MASTERS LTD. It describes the application's architecture, technology stack, modules, data flow, security model, and deployment approach.
 
 The architecture is designed to be scalable, secure, maintainable, and support multiple shops from a single platform.
 
@@ -24,7 +24,7 @@ The architecture is designed to be scalable, secure, maintainable, and support m
 
 # 2. System Overview
 
-The Inventory Management System is a web application built with **React (frontend SPA)** and **Supabase (backend platform)** that enables businesses to manage inventory, customers, sales, customer credits, expenses, receipts, and reporting across multiple shop locations.
+The SAYYIF PREMIUM FLOUR MASTERS LTD is a web application built with **React (frontend SPA)** and **Supabase (backend platform)** that enables businesses to manage inventory, customers, sales, customer credits, expenses, receipts, and reporting across multiple shop locations.
 
 The system uses a centralized Supabase PostgreSQL database with strict data isolation between shops through Row Level Security (RLS) policies and role-based access control (RBAC).
 

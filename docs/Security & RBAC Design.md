@@ -1,6 +1,6 @@
 # Security & RBAC Design
 
-# Inventory Management System (IMS)
+# SAYYIF PREMIUM FLOUR MASTERS LTD
 
 **Version:** 1.0 (MVP)
 
@@ -16,7 +16,7 @@
 
 # 1. Purpose
 
-This document defines the security model for the Inventory Management System (IMS), including the detailed role-based access control (RBAC) matrix, Row Level Security (RLS) policy design, and general security requirements.
+This document defines the security model for the SAYYIF PREMIUM FLOUR MASTERS LTD, including the detailed role-based access control (RBAC) matrix, Row Level Security (RLS) policy design, and general security requirements.
 
 It expands on the security section of the System Architecture Document (SAD) and the Database Design Document (DDD).
 

@@ -1,7 +1,7 @@
 # NasFon Inventory — Product Architecture (Single Source of Truth)
 
 > **Canonical architecture document** for evolving the existing Inventory Management
-> System (IMS) into a reusable, multi-tenant NasFon product.
+> System (SAYYIF PREMIUM FLOUR MASTERS LTD) into a reusable, multi-tenant NasFon product.
 > This merges the original architecture assessment, the billing/commercial-model design,
 > and the mobile white-label (APK/AAB) design into one reference.
 > **Status: spec for review. No code or schema has been changed.**
@@ -83,7 +83,7 @@ and white-label build, added in Parts 2–3).
    (`0001:435`); no signup UI (`src/services/auth.ts` has only `signInWithPassword`).
 2. **Per-shop branding** — `business_settings` (`0001:188-199`) lacks brand colors/theme;
    MUI theme is hardcoded indigo (`src/styles/theme.ts:21`); sidebar/header shows generic
-   "IMS" (`DashboardLayout.tsx:165`, `SidebarContent.tsx:62`).
+   "SAYYIF PREMIUM FLOUR MASTERS LTD" (`DashboardLayout.tsx:165`, `SidebarContent.tsx:62`).
 3. **Configurable roles & features** — roles hard-locked to 3 values by a CHECK constraint
    (`0001:37`); RLS/RPC branch on role *name*; no feature-flag table.
 

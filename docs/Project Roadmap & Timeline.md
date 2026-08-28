@@ -1,6 +1,6 @@
 # Project Roadmap & Timeline
 
-# Inventory Management System (IMS)
+# SAYYIF PREMIUM FLOUR MASTERS LTD
 
 **Version:** 1.0 (MVP)
 
@@ -16,7 +16,7 @@
 
 # 1. Purpose
 
-This document defines the project phases, milestones, deliverables, task breakdown, dependencies, and estimated timeline for delivering the Inventory Management System (IMS) MVP.
+This document defines the project phases, milestones, deliverables, task breakdown, dependencies, and estimated timeline for delivering the SAYYIF PREMIUM FLOUR MASTERS LTD MVP.
 
 It serves as the execution plan for the requirements defined in the Product Requirements Document (PRD) and aligned with the System Architecture, Database Design, API Specification, and Frontend UI Specification.
 

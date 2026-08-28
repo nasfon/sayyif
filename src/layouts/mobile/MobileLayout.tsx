@@ -63,7 +63,7 @@ export default function MobileLayout() {
   const topIsModal = MODAL_KEYS.includes(topKey)
   const visibleItem = navItemMap.get(topKey) ?? items[0]
   const showBottomBar = !topIsModal && !HIDE_TABS.has(topKey)
-  const title = titleOverride ?? visibleItem?.label ?? 'IMS'
+  const title = titleOverride ?? visibleItem?.label ?? 'SAYYIF PREMIUM FLOUR MASTERS LTD'
   const backVisible = stack.length > 1 || showBackOverride
 
   const pop = useCallback(() => {

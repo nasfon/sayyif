@@ -1,6 +1,6 @@
 # Deployment & Release Plan
 
-# Inventory Management System (IMS)
+# SAYYIF PREMIUM FLOUR MASTERS LTD
 
 **Version:** 1.0 (MVP)
 
@@ -16,7 +16,7 @@
 
 # 1. Purpose
 
-This document defines how the Inventory Management System (IMS) is deployed, released, backed up, and recovered. It covers environments, CI/CD, database migrations, release process, and disaster recovery.
+This document defines how the SAYYIF PREMIUM FLOUR MASTERS LTD is deployed, released, backed up, and recovered. It covers environments, CI/CD, database migrations, release process, and disaster recovery.
 
 It expands on the deployment section of the System Architecture Document (SAD).
 

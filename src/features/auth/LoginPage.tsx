@@ -97,7 +97,7 @@ export default function LoginPage() {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        background: 'linear-gradient(160deg, #eff6ff 0%, #ffffff 100%)',
+        background: 'linear-gradient(160deg, #f0f2f6 0%, #ffffff 100%)',
         pt: 'calc(16px + env(safe-area-inset-top))',
         pb: 'calc(16px + env(safe-area-inset-bottom))',
         pl: 'calc(16px + env(safe-area-inset-left))',
@@ -112,14 +112,14 @@ export default function LoginPage() {
           width: '100%',
           maxWidth: 420,
           borderRadius: 4,
-          boxShadow: '0 20px 50px -20px rgba(37, 99, 235, 0.35)',
+          boxShadow: '0 20px 50px -20px rgba(8, 40, 104, 0.35)',
         }}
       >
         <CardContent sx={{ p: { xs: 4, sm: 5 } }}>
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 4 }}>
             <Logo />
             <Typography variant="h5" component="h1" sx={{ mt: 2, fontWeight: 700, color: '#1e293b' }}>
-              Company
+              SAYYIF PREMIUM FLOUR MASTERS LTD
             </Typography>
             <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
               Sign in to your account

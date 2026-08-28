@@ -1,6 +1,6 @@
 # Product Requirements Document (PRD)
 
-## Inventory Management System (IMS)
+## SAYYIF PREMIUM FLOUR MASTERS LTD
 
 **Version:** 1.0 (MVP)
 
@@ -16,7 +16,7 @@
 
 # 1. Product Overview
 
-The Inventory Management System (IMS) is a web-based application designed to help businesses efficiently manage products, customers, sales, customer credits, expenses, and inventory across multiple shops.
+The SAYYIF PREMIUM FLOUR MASTERS LTD is a web-based application designed to help businesses efficiently manage products, customers, sales, customer credits, expenses, and inventory across multiple shops.
 
 The system will simplify daily business operations by providing real-time inventory tracking, receipt generation, sales history, customer credit management, and business reports through a secure, role-based administrator dashboard.
 

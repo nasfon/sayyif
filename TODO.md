@@ -1,6 +1,6 @@
-# IMS Project TODO
+# SAYYIF PREMIUM FLOUR MASTERS LTD Project TODO
 
-Tracking checklist for the Inventory Management System (IMS) MVP.
+Tracking checklist for the SAYYIF PREMIUM FLOUR MASTERS LTD MVP.
 
 **Marker convention:** `[x]` = completed, `[ ]` = pending / not started.
 
@@ -161,4 +161,4 @@ Spec reference: `docs/Mobile UI Specification.md`
 - [ ] Manual test on small/standard/large phone widths (Android + iOS emulation)
 - [ ] Verify role-based mobile nav and restricted actions
 
-Milestone: IMS usable as a native-feeling mobile app on Android and iOS.
+Milestone: SAYYIF PREMIUM FLOUR MASTERS LTD usable as a native-feeling mobile app on Android and iOS.

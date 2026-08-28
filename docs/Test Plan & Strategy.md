@@ -1,6 +1,6 @@
 # Test Plan & Strategy
 
-# Inventory Management System (IMS)
+# SAYYIF PREMIUM FLOUR MASTERS LTD
 
 **Version:** 1.0 (MVP)
 
@@ -10,7 +10,7 @@
 
 # 1. Purpose
 
-This document defines the testing approach for the Inventory Management System (IMS), including test levels, test types, environments, test scenarios, and entry/exit criteria.
+This document defines the testing approach for the SAYYIF PREMIUM FLOUR MASTERS LTD, including test levels, test types, environments, test scenarios, and entry/exit criteria.
 
 The goal is to verify that the system meets the requirements in the Product Requirements Document (PRD) and behaves correctly, securely, and reliably across all roles and shops.
 

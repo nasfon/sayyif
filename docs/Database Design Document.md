@@ -1,6 +1,6 @@
 # Database Design Document (DDD)
 
-# Inventory Management System (IMS)
+# SAYYIF PREMIUM FLOUR MASTERS LTD
 
 **Version:** 1.0 (MVP)
 
@@ -16,7 +16,7 @@
 
 # 1. Purpose
 
-This document defines the database structure for the Inventory Management System (IMS).
+This document defines the database structure for the SAYYIF PREMIUM FLOUR MASTERS LTD.
 
 The database is designed to support:
 

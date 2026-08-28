@@ -1,4 +1,4 @@
-# IMS — Inventory Management System
+# SAYYIF PREMIUM FLOUR MASTERS LTD
 
 A multi-shop inventory, sales, customer-credit, and expense web app.
 
