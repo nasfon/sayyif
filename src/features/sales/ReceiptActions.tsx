@@ -13,7 +13,7 @@ import Email from '@mui/icons-material/Email'
 import IosShare from '@mui/icons-material/IosShare'
 import { downloadReceiptImage } from '../../lib/receiptImage'
 import { downloadReceiptPdf } from '../../lib/receiptPdf'
-import { buildReceiptText, shareReceiptImageFile } from '../../lib/shareReceipt'
+import { shareReceiptImageFile } from '../../lib/shareReceipt'
 import type { SaleDetail } from '../../types/sales'
 
 interface ReceiptActionsProps {
@@ -47,10 +47,7 @@ export default function ReceiptActions({ sale, shopName }: ReceiptActionsProps) 
     setPending('share')
     try {
       const shared = await shareReceiptImageFile(sale, shopName)
-      if (!shared) {
-        const text = buildReceiptText(sale, shopName)
-        window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer')
-      }
+      if (!shared) await downloadReceiptImage(sale.receipt_number)
     } catch {
       // user cancelled or sharing failed — ignore
     } finally {
@@ -63,11 +60,7 @@ export default function ReceiptActions({ sale, shopName }: ReceiptActionsProps) 
     setPending('share')
     try {
       const shared = await shareReceiptImageFile(sale, shopName)
-      if (!shared) {
-        const text = buildReceiptText(sale, shopName)
-        const subject = `Receipt ${sale.receipt_number}`
-        window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(text)}`
-      }
+      if (!shared) await downloadReceiptImage(sale.receipt_number)
     } catch {
       // user cancelled or sharing failed — ignore
     } finally {
@@ -80,9 +73,7 @@ export default function ReceiptActions({ sale, shopName }: ReceiptActionsProps) 
     setPending('share')
     try {
       const shared = await shareReceiptImageFile(sale, shopName)
-      if (!shared && navigator.clipboard) {
-        await navigator.clipboard.writeText(buildReceiptText(sale, shopName))
-      }
+      if (!shared) await downloadReceiptImage(sale.receipt_number)
     } catch {
       // user cancelled or sharing failed — ignore
     } finally {

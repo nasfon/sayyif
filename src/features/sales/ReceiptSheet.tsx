@@ -137,8 +137,7 @@ function ReceiptContent({ sale, shop }: ReceiptSheetProps) {
     <div
       className="ims-receipt"
       style={{
-        width: '100%',
-        maxWidth: '210mm',
+        width: '210mm',
         minHeight: '297mm',
         boxSizing: 'border-box',
         background: '#ffffff',
@@ -161,14 +160,6 @@ function ReceiptContent({ sale, shop }: ReceiptSheetProps) {
             min-height: auto !important;
             padding: 20px 22px !important;
           }
-        }
-        @media (max-width: 700px) {
-          .ims-receipt { padding: 20px 16px !important; }
-          .ims-header { flex-direction: column !important; align-items: stretch !important; gap: 12px !important; }
-          .ims-badge { align-self: flex-start !important; }
-          .ims-meta-row { flex-direction: column !important; }
-          .ims-totals-box { justify-content: stretch !important; }
-          .ims-totals-card { width: 100% !important; }
         }
       `}</style>
 
@@ -409,7 +400,7 @@ export default function ReceiptSheet({ sale, shop, forPrint }: ReceiptSheetProps
   }
 
   return (
-    <div id="receipt-view">
+    <div id="receipt-view" style={{ overflowX: 'auto', maxWidth: '100%' }}>
       <ReceiptContent sale={sale} shop={shop} />
     </div>
   )

@@ -103,7 +103,7 @@ export default function SaleDetailsDialog({ saleId, onClose }: SaleDetailsDialog
           <Loading label="Loading sale details..." />
         ) : (
           <Stack spacing={2.5}>
-            <Box sx={{ maxWidth: 640, mx: 'auto', width: '100%' }}>
+            <Box sx={{ maxWidth: 640, mx: 'auto', width: '100%', overflowX: 'auto' }}>
               <ReceiptSheet sale={sale} shop={shop} />
             </Box>
 

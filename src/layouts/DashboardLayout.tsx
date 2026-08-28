@@ -1,4 +1,4 @@
-import { Suspense, useState } from 'react'
+import { Suspense, useCallback, useState } from 'react'
 import AppBar from '@mui/material/AppBar'
 import Alert from '@mui/material/Alert'
 import Avatar from '@mui/material/Avatar'
@@ -29,7 +29,8 @@ import PlaceholderPage from '../components/feedback/PlaceholderPage'
 import { getApiErrorMessage } from '../lib/errors'
 import { useAuth } from '../hooks/useAuth'
 import SidebarContent from './SidebarContent'
-import { getNavItems, type PageKey } from './navigation'
+import { getNavItems, navItemMap, type NavigateParams, type PageKey } from './navigation'
+import { MobileNavContext } from './mobile/mobileNav'
 
 const mobileDrawerWidth = 260
 
@@ -44,9 +45,18 @@ export default function DashboardLayout() {
   const [retrying, setRetrying] = useState(false)
 
   const items = getNavItems(profile?.role)
-  const activeKeyIsAllowed = items.some((item) => item.key === activeKey)
-  const effectiveActiveKey = activeKeyIsAllowed ? activeKey : 'dashboard'
-  const activeItem = items.find((item) => item.key === effectiveActiveKey) ?? items[0]
+  const [activeParams, setActiveParams] = useState<NavigateParams | undefined>(undefined)
+
+  const handleNavigate = useCallback((key: PageKey, params?: NavigateParams) => {
+    setActiveKey(key)
+    setActiveParams(params)
+    setMobileOpen(false)
+  }, [])
+
+  const navItem = navItemMap.get(activeKey) ?? navItemMap.get('dashboard')!
+  const activeItem =
+    navItem.hidden || items.some((item) => item.key === navItem.key) ? navItem : navItemMap.get('dashboard')!
+  const effectiveActiveKey = activeKey
   const drawerWidth = collapsed ? 72 : mobileDrawerWidth
   const roleColor =
     profile?.role === 'super_admin' ? 'error' : profile?.role === 'shop_admin' ? 'primary' : 'secondary'
@@ -194,10 +204,7 @@ export default function DashboardLayout() {
             items={items}
             activeKey={effectiveActiveKey}
             collapsed={false}
-            onNavigate={(key) => {
-              setActiveKey(key)
-              setMobileOpen(false)
-            }}
+            onNavigate={handleNavigate}
             onLogout={handleLogout}
             signingOut={signingOut}
           />
@@ -214,7 +221,7 @@ export default function DashboardLayout() {
             items={items}
             activeKey={effectiveActiveKey}
             collapsed={collapsed}
-            onNavigate={setActiveKey}
+            onNavigate={handleNavigate}
             onLogout={handleLogout}
             signingOut={signingOut}
           />
@@ -236,11 +243,23 @@ export default function DashboardLayout() {
           </Typography>
         </Breadcrumbs>
         <Suspense fallback={<Loading />}>
-          {activeItem.Page ? (
-            <activeItem.Page onNavigate={setActiveKey} />
-          ) : (
-            <PlaceholderPage title={activeItem.label} description={activeItem.placeholder ?? ''} />
-          )}
+          <MobileNavContext.Provider
+            value={{
+              isMobile: false,
+              navigate: handleNavigate,
+              params: activeParams,
+              setTitle: () => {},
+              setShowBack: () => {},
+              setRefresh: () => {},
+              setFab: () => {},
+            }}
+          >
+            {activeItem.Page ? (
+              <activeItem.Page onNavigate={handleNavigate} />
+            ) : (
+              <PlaceholderPage title={activeItem.label} description={activeItem.placeholder ?? ''} />
+            )}
+          </MobileNavContext.Provider>
         </Suspense>
       </Box>
 

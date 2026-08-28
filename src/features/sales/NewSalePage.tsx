@@ -22,24 +22,24 @@ import { formatCurrency, roundToTwo, sanitizeMoneyInput } from '../../lib/utils'
 import { useAuth } from '../../hooks/useAuth'
 import { useShops } from '../../hooks/useShops'
 import { useCreateSale } from '../../hooks/useSales'
+import { useMobileNav } from '../../layouts/mobile/mobileNav'
 import * as salesService from '../../services/sales'
 import type { CustomerRecord } from '../../types/customers'
 import type { ProductRecord } from '../../types/products'
-import { PAYMENT_METHOD_LABELS, type PaymentMethod, type SaleDetail } from '../../types/sales'
+import { PAYMENT_METHOD_LABELS, type PaymentMethod } from '../../types/sales'
 import CustomerPicker from './CustomerPicker'
 import ProductPicker from './ProductPicker'
 import SaleCart, { type CartLine } from './SaleCart'
-import SaleSuccessDialog from './SaleSuccessDialog'
 
 export default function NewSalePage() {
   const { profile } = useAuth()
+  const mobileNav = useMobileNav()
   const [shopSelection, setShopSelection] = useState('')
   const [cart, setCart] = useState<CartLine[]>([])
   const [customer, setCustomer] = useState<CustomerRecord | null>(null)
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('cash')
   const [amountPaidInput, setAmountPaidInput] = useState<string | null>(null)
   const [submitError, setSubmitError] = useState<string | null>(null)
-  const [successSale, setSuccessSale] = useState<SaleDetail | null>(null)
   const [partialWarning, setPartialWarning] = useState(false)
 
   const isSuperAdmin = profile?.role === 'super_admin'
@@ -112,11 +112,11 @@ export default function NewSalePage() {
         payment_method: paymentMethod,
       })
       const sale = await salesService.getSale(saleId)
-      setSuccessSale(sale)
       setCart([])
       setCustomer(null)
       setPaymentMethod('cash')
       setAmountPaidInput(null)
+      mobileNav.navigate('receipt', { saleId: sale.id })
     } catch (error) {
       setSubmitError(getApiErrorMessage(error))
     }
@@ -268,12 +268,6 @@ export default function NewSalePage() {
           </Paper>
         </Stack>
       )}
-
-      <SaleSuccessDialog
-        open={successSale !== null}
-        sale={successSale}
-        onClose={() => setSuccessSale(null)}
-      />
 
       <Dialog open={partialWarning} onClose={() => setPartialWarning(false)}>
         <DialogTitle>Partial payment for walk-in</DialogTitle>

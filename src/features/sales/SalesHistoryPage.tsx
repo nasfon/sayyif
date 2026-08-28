@@ -20,7 +20,6 @@ import { useSalesList } from '../../hooks/useSales'
 import { formatCurrency, formatDate, formatDateTime } from '../../lib/utils'
 import type { PaymentMethod, SaleListRow, SaleStatus } from '../../types/sales'
 import { PAYMENT_METHOD_LABELS } from '../../types/sales'
-import SaleDetailsDialog from './SaleDetailsDialog'
 import { useMobileNav } from '../../layouts/mobile/mobileNav'
 import { MobileList, MobileRow } from '../../components/mobile/MobileList'
 
@@ -34,7 +33,6 @@ export default function SalesHistoryPage() {
   const [paymentFilter, setPaymentFilter] = useState<PaymentMethod | ''>('')
   const [dateFrom, setDateFrom] = useState('')
   const [dateTo, setDateTo] = useState('')
-  const [selectedId, setSelectedId] = useState<string | null>(null)
 
   const mobileNav = useMobileNav()
   const isMobile = mobileNav.isMobile
@@ -151,7 +149,11 @@ export default function SalesHistoryPage() {
       id: 'actions',
       header: 'Actions',
       cell: (info) => (
-        <Button size="small" startIcon={<Visibility />} onClick={() => setSelectedId(info.row.original.id)}>
+        <Button
+          size="small"
+          startIcon={<Visibility />}
+          onClick={() => mobileNav.navigate('receipt', { saleId: info.row.original.id })}
+        >
           View
         </Button>
       ),
@@ -294,8 +296,6 @@ export default function SalesHistoryPage() {
           emptyDescription="Try adjusting your search or filters."
         />
       )}
-
-      <SaleDetailsDialog saleId={selectedId} onClose={() => setSelectedId(null)} />
     </Box>
   )
 }
