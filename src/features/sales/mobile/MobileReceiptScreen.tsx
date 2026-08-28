@@ -3,11 +3,18 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import CircularProgress from '@mui/material/CircularProgress'
 import Divider from '@mui/material/Divider'
+import Menu from '@mui/material/Menu'
+import MenuItem from '@mui/material/MenuItem'
+import ListItemIcon from '@mui/material/ListItemIcon'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import Print from '@mui/icons-material/Print'
 import Image from '@mui/icons-material/Image'
 import PictureAsPdf from '@mui/icons-material/PictureAsPdf'
+import ShareIcon from '@mui/icons-material/Share'
+import WhatsApp from '@mui/icons-material/WhatsApp'
+import Email from '@mui/icons-material/Email'
+import IosShare from '@mui/icons-material/IosShare'
 import EditNote from '@mui/icons-material/EditNote'
 import Undo from '@mui/icons-material/Undo'
 import History from '@mui/icons-material/History'
@@ -19,8 +26,8 @@ import { usePermissions } from '../../../hooks/usePermissions'
 import { getApiErrorMessage } from '../../../lib/errors'
 import { downloadReceiptImage } from '../../../lib/receiptImage'
 import { downloadReceiptPdf } from '../../../lib/receiptPdf'
+import { buildReceiptText, shareReceiptImageFile } from '../../../lib/shareReceipt'
 import ReceiptSheet from '../ReceiptSheet'
-import MobileTicket from './MobileTicket'
 import CorrectSaleDialog from '../CorrectSaleDialog'
 import ReverseSaleDialog from '../ReverseSaleDialog'
 import SaleAuditTrail from '../SaleAuditTrail'
@@ -32,7 +39,8 @@ export default function MobileReceiptScreen() {
   const shopQuery = useShopDetail(sale?.shop_id ?? null)
   const shop = shopQuery.data ?? null
   const { canCorrectSales, canReverseSales } = usePermissions()
-  const [pending, setPending] = useState<'pdf' | 'image' | null>(null)
+  const [pending, setPending] = useState<'pdf' | 'image' | 'share' | null>(null)
+  const [shareAnchor, setShareAnchor] = useState<HTMLElement | null>(null)
   const [correctOpen, setCorrectOpen] = useState(false)
   const [reverseOpen, setReverseOpen] = useState(false)
   const [historyOpen, setHistoryOpen] = useState(false)
@@ -51,6 +59,57 @@ export default function MobileReceiptScreen() {
       } else {
         await downloadReceiptImage(sale.receipt_number)
       }
+    } finally {
+      setPending(null)
+    }
+  }
+
+  const shareWhatsApp = async () => {
+    if (!sale) return
+    setShareAnchor(null)
+    setPending('share')
+    try {
+      const shared = await shareReceiptImageFile(sale, shop?.name)
+      if (!shared) {
+        const text = buildReceiptText(sale, shop?.name)
+        window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer')
+      }
+    } catch {
+      // ignore
+    } finally {
+      setPending(null)
+    }
+  }
+
+  const shareEmail = async () => {
+    if (!sale) return
+    setShareAnchor(null)
+    setPending('share')
+    try {
+      const shared = await shareReceiptImageFile(sale, shop?.name)
+      if (!shared) {
+        const text = buildReceiptText(sale, shop?.name)
+        const subject = `Receipt ${sale.receipt_number}`
+        window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(text)}`
+      }
+    } catch {
+      // ignore
+    } finally {
+      setPending(null)
+    }
+  }
+
+  const shareNative = async () => {
+    if (!sale) return
+    setShareAnchor(null)
+    setPending('share')
+    try {
+      const shared = await shareReceiptImageFile(sale, shop?.name)
+      if (!shared && navigator.clipboard) {
+        await navigator.clipboard.writeText(buildReceiptText(sale, shop?.name))
+      }
+    } catch {
+      // ignore
     } finally {
       setPending(null)
     }
@@ -98,24 +157,19 @@ export default function MobileReceiptScreen() {
   }
 
   return (
-    <Box sx={{ pb: 'calc(84px + env(safe-area-inset-bottom))' }}>
+    <Box sx={{ pb: 'calc(168px + env(safe-area-inset-bottom))' }}>
       <Box
         sx={{
-          maxWidth: 360,
+          maxWidth: 480,
           mx: 'auto',
           background: '#ffffff',
           borderRadius: 3,
           boxShadow: 3,
-          p: 2.5,
+          p: 2,
           position: 'relative',
         }}
       >
-          <Box
-            id="receipt-view"
-            sx={{ background: '#ffffff', borderRadius: 2, p: 1 }}
-          >
-            <MobileTicket sale={sale} shop={shop} />
-          </Box>
+        <ReceiptSheet sale={sale} shop={shop} />
       </Box>
 
       {(canModify && (canCorrectSales || canReverseSales)) && (
@@ -173,6 +227,7 @@ export default function MobileReceiptScreen() {
           bottom: 0,
           zIndex: 1100,
           display: 'flex',
+          flexWrap: 'wrap',
           gap: 1,
           p: 1.5,
           pt: 1.25,
@@ -182,11 +237,16 @@ export default function MobileReceiptScreen() {
           borderColor: 'divider',
         }}
       >
-        <Button fullWidth variant="contained" startIcon={<Print />} onClick={() => window.print()}>
+        <Button
+          sx={{ flex: '1 1 140px' }}
+          variant="contained"
+          startIcon={<Print />}
+          onClick={() => window.print()}
+        >
           Print
         </Button>
         <Button
-          fullWidth
+          sx={{ flex: '1 1 140px' }}
           variant="outlined"
           startIcon={pending === 'image' ? <CircularProgress size={16} /> : <Image />}
           onClick={() => handleDownload('image')}
@@ -195,7 +255,7 @@ export default function MobileReceiptScreen() {
           Save PNG
         </Button>
         <Button
-          fullWidth
+          sx={{ flex: '1 1 140px' }}
           variant="outlined"
           startIcon={pending === 'pdf' ? <CircularProgress size={16} /> : <PictureAsPdf />}
           onClick={() => handleDownload('pdf')}
@@ -203,6 +263,36 @@ export default function MobileReceiptScreen() {
         >
           PDF
         </Button>
+        <Button
+          sx={{ flex: '1 1 140px' }}
+          variant="contained"
+          color="secondary"
+          startIcon={pending === 'share' ? <CircularProgress size={16} /> : <ShareIcon />}
+          onClick={(event) => setShareAnchor(event.currentTarget)}
+          disabled={pending !== null}
+        >
+          Share
+        </Button>
+        <Menu anchorEl={shareAnchor} open={Boolean(shareAnchor)} onClose={() => setShareAnchor(null)}>
+          <MenuItem onClick={shareWhatsApp}>
+            <ListItemIcon>
+              <WhatsApp fontSize="small" />
+            </ListItemIcon>
+            WhatsApp
+          </MenuItem>
+          <MenuItem onClick={shareEmail}>
+            <ListItemIcon>
+              <Email fontSize="small" />
+            </ListItemIcon>
+            Email
+          </MenuItem>
+          <MenuItem onClick={shareNative}>
+            <ListItemIcon>
+              <IosShare fontSize="small" />
+            </ListItemIcon>
+            More apps
+          </MenuItem>
+        </Menu>
       </Box>
 
       <CorrectSaleDialog
