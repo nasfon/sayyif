@@ -1,3 +1,6 @@
+import { Filesystem, Directory } from '@capacitor/filesystem'
+import { isNative } from './capacitor'
+
 export async function downloadReceiptImage(receiptNumber: string): Promise<void> {
   const node =
     document.querySelector('.ims-receipt') ?? document.getElementById('receipt-view')
@@ -10,8 +13,19 @@ export async function downloadReceiptImage(receiptNumber: string): Promise<void>
     backgroundColor: '#ffffff',
     cacheBust: true,
   })
-  const link = document.createElement('a')
-  link.download = `receipt-${receiptNumber}.png`
-  link.href = dataUrl
-  link.click()
+
+  if (isNative()) {
+    const base64 = dataUrl.split(',')[1]
+    const fileName = `receipt-${receiptNumber}.png`
+    await Filesystem.writeFile({
+      path: fileName,
+      data: base64,
+      directory: Directory.External,
+    })
+  } else {
+    const link = document.createElement('a')
+    link.download = `receipt-${receiptNumber}.png`
+    link.href = dataUrl
+    link.click()
+  }
 }

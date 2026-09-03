@@ -21,6 +21,7 @@ export default function FormTextField<T extends FieldValues>({
           {...field}
           {...rest}
           fullWidth
+          sx={{ mb: 1.5, ...rest.sx }}
           error={!!fieldState.error}
           helperText={fieldState.error?.message}
         />

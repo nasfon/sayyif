@@ -25,7 +25,7 @@ export default function FormSelect<T extends FieldValues>({
       name={name}
       control={control}
       render={({ field, fieldState }) => (
-        <FormControl fullWidth error={!!fieldState.error}>
+        <FormControl fullWidth error={!!fieldState.error} sx={{ mb: 1.5 }}>
           <InputLabel>{label}</InputLabel>
           <Select {...field} {...rest} label={label}>
             {children}

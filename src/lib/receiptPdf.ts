@@ -1,3 +1,5 @@
+import { Filesystem, Directory } from '@capacitor/filesystem'
+import { isNative } from './capacitor'
 import type { SaleDetail } from '../types/sales'
 
 const A4_W = 210
@@ -59,7 +61,18 @@ export async function downloadReceiptPdf(sale: SaleDetail): Promise<void> {
       doc.addImage(dataUrl, 'PNG', 0, 0, width, A4_H)
     }
 
-    doc.save(`receipt-${sale.receipt_number}.pdf`)
+    const pdfBase64 = doc.output('datauristring').split(',')[1]
+    const fileName = `receipt-${sale.receipt_number}.pdf`
+
+    if (isNative()) {
+      await Filesystem.writeFile({
+        path: fileName,
+        data: pdfBase64,
+        directory: Directory.External,
+      })
+    } else {
+      doc.save(fileName)
+    }
   } finally {
     if (wasHidden) {
       node.style.display = prevDisplay

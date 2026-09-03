@@ -24,6 +24,7 @@ export default function FormMoneyField<T extends FieldValues>({
           {...field}
           {...rest}
           fullWidth
+          sx={{ mb: 1.5, ...rest.sx }}
           type="number"
           inputMode="decimal"
           slotProps={{ htmlInput: { step: 'any', min: 0, inputMode: 'decimal' } }}
