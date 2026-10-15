@@ -2,7 +2,7 @@ import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.sayyif.app',
-  appName: 'sayyif',
+  appName: 'Sayyif',
   webDir: 'dist',
   android: {
     backgroundColor: '#FFFFFF',
