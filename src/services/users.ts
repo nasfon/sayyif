@@ -73,14 +73,15 @@ export async function listUsers(params: UserListParams): Promise<UserListResult>
 }
 
 export async function createUser(input: CreateUserInput): Promise<void> {
-  await supabase.functions.invoke('admin-create-user', {
-    email: input.email,
-    password: input.password,
-    full_name: input.full_name,
-    phone: input.phone ?? null,
-    role_name: input.role,
-    shop_id: input.shop_id,
+  const { error } = await supabase.rpc('admin_create_user', {
+    p_email: input.email,
+    p_password: input.password,
+    p_full_name: input.full_name,
+    p_phone: input.phone ?? null,
+    p_role_name: input.role,
+    p_shop_id: input.shop_id,
   })
+  if (error) throw error
 }
 
 export async function onboardUser(input: OnboardUserInput): Promise<void> {
@@ -107,10 +108,11 @@ export async function updateUser(input: UpdateUserInput): Promise<void> {
 }
 
 export async function resetPassword(userId: string, newPassword: string): Promise<void> {
-  await supabase.functions.invoke('admin-reset-password', {
-    user_id: userId,
-    new_password: newPassword,
+  const { error } = await supabase.rpc('admin_reset_password', {
+    p_user_id: userId,
+    p_new_password: newPassword,
   })
+  if (error) throw error
 }
 
 export async function deleteUser(userId: string): Promise<void> {

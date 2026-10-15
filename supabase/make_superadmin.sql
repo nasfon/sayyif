@@ -10,7 +10,7 @@
 
 do $$
 declare
-  v_email   text := 'your-email@example.com';  -- <-- CHANGE THIS
+  v_email   text := 'superadmin@sayyif.com';  -- <-- CHANGE THIS
   v_role_id uuid;
   v_user_id uuid;
 begin
