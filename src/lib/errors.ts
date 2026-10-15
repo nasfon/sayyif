@@ -1,12 +1,10 @@
 const networkPatterns = [
   'failed to fetch',
   'fetch failed',
-  'typeerror',
   'network error',
   'network request failed',
   'networkerror',
   'load failed',
-  'account unavailable',
   'the internet connection appears to be offline',
   'net::err_',
   'err_internet_disconnected',
@@ -21,9 +19,6 @@ const networkPatterns = [
 export const NETWORK_ERROR_MESSAGE = "You're offline. Check your internet connection and try again."
 
 export function isNetworkError(error: unknown): boolean {
-  if (typeof navigator !== 'undefined' && navigator.onLine === false) {
-    return true
-  }
   if (error instanceof Error) {
     const haystack = `${error.name} ${error.message}`.toLowerCase()
     return networkPatterns.some((pattern) => haystack.includes(pattern))
