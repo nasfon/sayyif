@@ -5,10 +5,6 @@
 **Application:** Sayyif (Android package `com.sayyif.app`)
 **Last updated:** 15 October 2026
 
-> **Draft notice.** This policy is generated from the current codebase. Replace every
-> `[PLACEHOLDER]` before publishing, and have it reviewed for the jurisdictions in which the
-> app is distributed.
-
 ---
 
 ## 1. Introduction
@@ -23,8 +19,8 @@ our administrators, and there is no public self-registration.
 
 By using the App, you agree to the collection and use of information described in this policy.
 
-**Data controller:** `[LEGAL ENTITY NAME AND REGISTERED ADDRESS]`
-**Privacy contact:** `[PRIVACY EMAIL]` / `[PRIVACY PHONE]`
+**Data controller:** SAYYIF PRIMIUM MASTERS FLOUR NIG LTD (trading as "Sayyif"), Nigeria
+**Privacy contact:** sayyifpremiumflourmasternigltd@gmail.com / 08064786344
 
 ---
 
@@ -140,8 +136,8 @@ Data Protection Regulation (GDPR) applies, we process personal data on the follo
 No method of transmission or storage is completely secure. While we work to protect your
 information, we cannot guarantee absolute security.
 
-**Data location:** `[HOSTING REGION / DATA RESIDENCY]` (the current deployment region has not been
-documented; confirm before publishing).
+**Data location:** Our organisation is based in **Nigeria**. Data is stored on the infrastructure
+of our service providers, which may process and store it in Nigeria or in other countries.
 
 ---
 
@@ -169,8 +165,8 @@ We do not sell personal information. We share it only as follows:
 - Products, customers, and users are **soft-deleted**: when a record is deleted, it is marked as
   deleted and hidden from normal use, but the underlying data is retained in the database to
   preserve the integrity of historical transactions and audit records.
-- We retain records for as long as needed to operate the business and to meet legal, tax, and
-  accounting requirements. `[RETENTION PERIOD]`
+- We retain records for as long as needed to operate the business and to meet Nigerian legal,
+  tax, and accounting requirements.
 - Backups are taken regularly and retained for at least seven (7) days.
 
 ---
@@ -196,9 +192,9 @@ we do not knowingly collect personal information from children.
 
 ## 10. International Transfers
 
-Our service providers may process and store data in countries other than your own. Where
-required, we take steps to ensure such transfers are protected by appropriate safeguards.
-`[TRANSFER MECHANISM / COUNTRIES]`
+Our service providers may process and store data in countries other than your own, including
+outside Nigeria. Where required, we take steps to ensure such transfers are protected by
+appropriate safeguards.
 
 ---
 
@@ -214,7 +210,7 @@ effect means you accept the updated policy.
 
 For questions or requests about this Privacy Policy or your personal information, contact:
 
-**SAYYIF PREMIUM FLOUR MASTERS LTD**
-`[ADDRESS]`
-Email: `[PRIVACY EMAIL]`
-Phone: `[PHONE]`
+**SAYYIF PRIMIUM MASTERS FLOUR NIG LTD**
+Nigeria
+Email: sayyifpremiumflourmasternigltd@gmail.com
+Phone: 08064786344
