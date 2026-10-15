@@ -35,12 +35,12 @@ export default function ManualCreditDialog({
     formState: { isSubmitting: formSubmitting },
   } = useForm<ManualCreditFormInput, unknown, ManualCreditFormValues>({
     resolver: zodResolver(manualCreditSchema),
-    defaultValues: { amount: 0, reason: '' },
+    defaultValues: { amount: '', reason: '' },
   })
 
   useEffect(() => {
     if (open) {
-      reset({ amount: 0, reason: '' })
+      reset({ amount: '', reason: '' })
     }
   }, [open, reset])
 

@@ -18,7 +18,7 @@ import ShoppingCartCheckout from '@mui/icons-material/ShoppingCartCheckout'
 import PageHeader from '../../components/ui/PageHeader'
 import EmptyState from '../../components/ui/EmptyState'
 import { getApiErrorMessage } from '../../lib/errors'
-import { formatCurrency, roundToTwo, sanitizeMoneyInput } from '../../lib/utils'
+import { formatCurrency, formatMoneyInput, normalizeMoneyInput, roundToTwo } from '../../lib/utils'
 import { useAuth } from '../../hooks/useAuth'
 import { useShops } from '../../hooks/useShops'
 import { useCreateSale } from '../../hooks/useSales'
@@ -38,7 +38,7 @@ export default function NewSalePage() {
   const [cart, setCart] = useState<CartLine[]>([])
   const [customer, setCustomer] = useState<CustomerRecord | null>(null)
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('cash')
-  const [amountPaidInput, setAmountPaidInput] = useState<string | null>(null)
+  const [amountPaidInput, setAmountPaidInput] = useState<string>('')
   const [submitError, setSubmitError] = useState<string | null>(null)
   const [partialWarning, setPartialWarning] = useState(false)
 
@@ -50,7 +50,7 @@ export default function NewSalePage() {
 
   const subtotal = roundToTwo(cart.reduce((sum, line) => sum + roundToTwo(line.unit_price * line.quantity), 0))
   const total = subtotal
-  const amountPaid = amountPaidInput ?? String(total)
+  const amountPaid = amountPaidInput
   const amountPaidNum = Number(amountPaid)
   const overpayment = Number.isFinite(amountPaidNum) && amountPaidNum > total
   const isWalkIn = !customer
@@ -97,7 +97,15 @@ export default function NewSalePage() {
     const next = cart.filter((line) => line.product_id !== productId)
     setCart(next)
     if (next.length === 0) {
-      setAmountPaidInput(null)
+      setAmountPaidInput('')
+    }
+  }
+
+  const handlePaymentMethodChange = (event: SelectChangeEvent<PaymentMethod>) => {
+    const method = event.target.value as PaymentMethod
+    setPaymentMethod(method)
+    if (method === 'credit') {
+      setAmountPaidInput('')
     }
   }
 
@@ -115,7 +123,7 @@ export default function NewSalePage() {
       setCart([])
       setCustomer(null)
       setPaymentMethod('cash')
-      setAmountPaidInput(null)
+      setAmountPaidInput('')
       mobileNav.navigate('receipt', { saleId: sale.id })
     } catch (error) {
       setSubmitError(getApiErrorMessage(error))
@@ -134,7 +142,7 @@ export default function NewSalePage() {
     setCart([])
     setCustomer(null)
     setPaymentMethod('cash')
-    setAmountPaidInput(null)
+    setAmountPaidInput('')
     setSubmitError(null)
   }
 
@@ -200,9 +208,7 @@ export default function NewSalePage() {
                 <Typography variant="subtitle2">Payment method</Typography>
                 <Select
                   value={paymentMethod}
-                  onChange={(event: SelectChangeEvent<PaymentMethod>) =>
-                    setPaymentMethod(event.target.value as PaymentMethod)
-                  }
+                  onChange={handlePaymentMethodChange}
                   size="small"
                   fullWidth
                 >
@@ -215,11 +221,11 @@ export default function NewSalePage() {
               </Stack>
               <TextField
                 label="Amount paid"
-                type="number"
+                type="text"
                 inputMode="decimal"
                 slotProps={{ htmlInput: { step: 'any', min: 0, inputMode: 'decimal' } }}
-                value={amountPaidInput === null ? String(total) : amountPaidInput}
-                onChange={(event) => setAmountPaidInput(sanitizeMoneyInput(event.target.value))}
+                value={formatMoneyInput(amountPaidInput)}
+                onChange={(event) => setAmountPaidInput(normalizeMoneyInput(event.target.value))}
                 size="small"
                 fullWidth
               />

@@ -19,6 +19,10 @@ export function sanitizeMoneyInput(input: string) {
   return input.replace(/[^\d.]/g, '').replace(/(\..*)\./g, '$1')
 }
 
+export function normalizeMoneyInput(input: string) {
+  return sanitizeMoneyInput(input).replace(/^0+(?=\d)/, '')
+}
+
 export function formatMoneyInput(value: string | number) {
   const text = String(value)
   if (text === '') return ''
